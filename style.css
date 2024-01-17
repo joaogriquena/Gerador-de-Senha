@@ -35,6 +35,8 @@ section.hero .subtitle {
 
 .password {
     display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
 }
 
 .password .text {
@@ -51,4 +53,12 @@ section.hero .subtitle {
     width: 100%;
     transition: all 0.2s;
     user-select: none;
+}
+
+.password .actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0, 7;
+    transition: opacity 0.2s;
 }
