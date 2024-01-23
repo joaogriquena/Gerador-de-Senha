@@ -235,3 +235,30 @@ section.hero .subtitle {
 .submit button:hover {
     background-color: #9b51e0;
 }
+
+@media only screen and (max-width: 480px) {
+    .password {
+        padding: 1rem;
+    }
+
+    .password .text input {
+        font-size: 1.5rem;
+    }
+
+    .password .text input.font-sm {
+        font-size: 1.2rem;
+    }
+
+    .password .text input.font-xm {
+        font-size: 1rem;
+    }
+
+    .password .text input.font-sm {
+        font-size: 1rem;
+    }
+
+    .password .actions img {
+        width: 24px;
+    }
+
+}
