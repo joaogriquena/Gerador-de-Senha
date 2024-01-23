@@ -1,9 +1,9 @@
 
 const inputEl = document.querySelector('#password')
-
 const upperCaseCheckEl = document.querySelector('#uppercase-check')
 const numberCheckEl = document.querySelector('#number-check')
 const symbolCheckEl = document.querySelector('#symbol-check')
+const securityIndicatorBarEl = document.querySelector('#security-indicator-bar')
 
 let passwordLength = 16
 
@@ -35,7 +35,43 @@ function generatePassword() {
     }
 
     inputEl.value = password
+
+    calculateQuality()
 }
+
+function calculateQuality() {
+    const percent = Math.round((passwordLength / 64) * 20 +
+        (upperCaseCheckEl.checked ? 20 : 0) +
+        (numberCheckEl.checked ? 25 : 0) +
+        (symbolCheckEl.checked ? 35 : 0))
+
+    securityIndicatorBarEl.style.width = `${percent}%`;
+
+    if (percent > 69) {
+        //safe
+        securityIndicatorBarEl.classList.remove('critical')
+        securityIndicatorBarEl.classList.remove('warning')
+        securityIndicatorBarEl.classList.add('safe')
+    } else if (percent > 50) {
+        //warning
+        securityIndicatorBarEl.classList.remove('critical')
+        securityIndicatorBarEl.classList.add('warning')
+        securityIndicatorBarEl.classList.remove('safe')
+    } else {
+        //critical
+        securityIndicatorBarEl.classList.add('critical')
+        securityIndicatorBarEl.classList.remove('warning')
+        securityIndicatorBarEl.classList.remove('safe')
+    }
+
+    if (percent >= 100) {
+        securityIndicatorBarEl.classList.add('completed')
+    } else {
+        securityIndicatorBarEl.classList.remove('completed')
+
+    }
+}
+
 
 function copy() {
     navigator.clipboard.writeText(inputEl.value)
